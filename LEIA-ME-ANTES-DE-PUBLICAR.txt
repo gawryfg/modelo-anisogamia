@@ -1,0 +1,17 @@
+O WORKFLOW ESTÁ INCLUÍDO
+========================
+
+O arquivo utilizado pelo GitHub Actions está neste caminho:
+
+  .github/workflows/deploy-pages.yml
+
+No macOS, a pasta .github fica oculta porque seu nome começa com um ponto.
+No Finder, pressione Command + Shift + ponto para mostrar ou esconder arquivos
+ocultos.
+
+Ao publicar a pasta inteira pelo GitHub Desktop, a pasta .github será enviada
+mesmo que não esteja visível no Finder.
+
+Também incluímos COPIA-VISIVEL-deploy-pages.yml na raiz apenas para que você
+possa examinar o conteúdo. Essa cópia não é executada pelo GitHub. O arquivo
+executado é .github/workflows/deploy-pages.yml.
