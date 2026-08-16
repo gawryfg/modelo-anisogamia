@@ -143,7 +143,7 @@ function Histogram({ population }: { population: number[] }) {
   const top = Math.max(...counts);
   return (
     <div className="histogram" role="img" aria-label="Distribuição atual do tamanho dos gametas">
-      {counts.map((count, i) => <div key={i} className="hist-bar" style={{ height: `${Math.max(2, (count / top) * 100)}%`, opacity: 0.4 + (i / bins) * 0.6 }} title={`${count} gametas parentais`} />)}
+      {counts.map((count, i) => <div key={i} className="hist-bar" style={{ height: `${Math.max(2, (count / top) * 100)}%`, opacity: 0.4 + (i / bins) * 0.6 }} title={`${count} indivíduos`} />)}
       <span className="hist-label left">1</span><span className="hist-label right">{maxValue} u.</span>
     </div>
   );
@@ -279,15 +279,15 @@ export default function Home() {
             {extinct && <div className="extinction-alert"><b>Extinção nesta geração.</b> Nenhum zigoto sobreviveu com estes parâmetros. Ajuste a curva ou reinicie.</div>}
 
             <div className="chart-card">
-              <div className="chart-heading"><div><small>TAMANHO DOS GAMETAS</small><h3>Trajetória evolutiva</h3></div><div className="legend"><span className="legend-large">90º percentil</span><span className="legend-mean">Média</span><span className="legend-small">10º percentil</span></div></div>
-              <LineChart history={history} />
+              <div className="chart-heading"><div><small>TAMANHO DOS GAMETAS</small><h3>Distribuição atual</h3></div><div className="population-count"><small>POPULAÇÃO</small><b>n = {N_POP.toLocaleString("pt-BR")}</b></div></div>
+              <Histogram population={latest.population} />
             </div>
 
             <div className="metrics-grid">
               <article><small>TAMANHO MÉDIO</small><strong>{format(latest.mean, 2)}</strong><span>unidades de energia</span></article>
               <article><small>DIFERENÇA</small><strong>{format(difference, 2)}×</strong><span>razão P90 / P10</span></article>
               <article><small>SOBREVIVÊNCIA</small><strong>{latest.generation ? format(latest.survival * 100, 1) : "—"}<em>{latest.generation ? "%" : ""}</em></strong><span>zigotos na última geração</span></article>
-              <article className="distribution"><div><small>DISTRIBUIÇÃO ATUAL</small><b>n = {N_POP}</b></div><Histogram population={latest.population} /></article>
+              <article className="trajectory-mini"><div><small>TRAJETÓRIA EVOLUTIVA</small><b>média · P10 · P90</b></div><LineChart history={history} /></article>
             </div>
           </div>
         </div>
